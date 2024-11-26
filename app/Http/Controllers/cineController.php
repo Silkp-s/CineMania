@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cine;
 
-class cineController extends Controller
+class CineController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class cineController extends Controller
      */
     public function index()
     {
-        //
+        $cines = Cine::paginate(5);
+        return view('cine.index',compact('cines')); 
     }
 
     /**
@@ -23,7 +24,7 @@ class cineController extends Controller
      */
     public function create()
     {
-        //
+        return view('cine.create');
     }
 
     /**
@@ -34,7 +35,16 @@ class cineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ciudad' => 'required|string|max:255',
+            'pais' => 'required|string|max:255'    
+        ]);
+        Cine::create([
+            'ciudad' => $request->ciudad,
+            'pais' => $request->pais,
+        ]);
+        // Redirige a la lista de clientes con un mensaje de éxito
+        return redirect()->route('index.cines')->with('success', 'Cine creado con éxito.');
     }
 
     /**
@@ -45,7 +55,8 @@ class cineController extends Controller
      */
     public function show($id)
     {
-        //
+        $cine = Cine::findOrFail($id);
+        return view('cine.show', compact('cine')); // Pasa el cliente a la vista
     }
 
     /**
@@ -56,7 +67,8 @@ class cineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cine = Cine::findOrFail($id);
+        return view('cine.edit', compact('cine'));
     }
 
     /**
@@ -68,7 +80,14 @@ class cineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cine= Cine::findOrFail($id);
+        // Actualiza el cliente en la base de datos
+        $cine->update([
+            'ciudad' => $request->ciudad,
+            'pais' => $request->pais   
+        ]);
+        // Redirige a la lista de clientes con un mensaje de éxito
+        return redirect()->route('index.cines')->with('success', 'Cine actualizado con éxito.');
     }
 
     /**
@@ -79,6 +98,9 @@ class cineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cine = Cine::findOrFail($id);
+        $cine->delete(); // Elimina el cliente
+        // Redirige a la lista de clientes con un mensaje de éxito
+        return redirect()->route('index.cines')->with('success', 'Cine eliminado con éxito.');
     }
 }

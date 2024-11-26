@@ -1,30 +1,29 @@
 @extends('layouts.principal')
-@section('title','clientes')
+@section('title','cines')
 @section('content')
-<h1>Lista de Clientes</h1>
-<a href="{{ route('create.clientes') }}" class="btn btn-custom mb-3">Agregar Cliente</a>
+<h1>Lista de Cines</h1>
+<a href="{{ route('create.cines') }}" class="btn btn-custom mb-3">Agregar Cine</a>
 <table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>edad</th>
-            <th>Acciones</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>acciones</th>
+
         </tr>
     </thead>
     <tbody>
-        @forelse ($clients as $client)
+        @forelse ($cines as $cine)
             <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->nombre }}</td>
-                <td>{{ $client->mail }}</td>
-                <td>{{ $client->edad }}</td>
+                <td>{{ $cine->id }}</td>
+                <td>{{ $cine->ciudad }}</td>
+                <td>{{ $cine->pais }}</td>             
                 <td>
                    
-                    <a href="{{ route('show.clientes', $client->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.clientes', $client->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.clientes', $client->id) }}">
+                    <a href="{{ route('show.cines', $cine->id)}}" class="btn btn-sm btn-primary">Ver</a>
+                    <a href="{{ route('edit.cines', $cine->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.cines', $cine->id) }}">
                         Eliminar
                     </button>
                 </td>
@@ -38,7 +37,7 @@
 </table>
 
 <div class="d-flex justify-content-center my-4">
-    {{ $clients->links() }}
+    {{ $cines->links() }}
 </div>
 
 <!-- Modal de Confirmación -->
@@ -52,11 +51,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este cliente?
+                ¿Estás seguro de que deseas eliminar este cine?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form action="{{route('destroy.clientes',$client->id)}}", id="deleteForm" method="POST">
+                <form action="{{ route('destroy.cines', $cine->id) }}", id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

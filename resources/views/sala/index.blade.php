@@ -1,32 +1,30 @@
 @extends('layouts.principal')
 @section('title','clientes')
 @section('content')
-<h1>Lista de Clientes</h1>
-<a href="{{ route('create.clientes') }}" class="btn btn-custom mb-3">Agregar Cliente</a>
+<h1>Lista de Salas</h1>
+<a href="{{ route('create.salas') }}" class="btn btn-custom mb-3">Agregar sala</a>
 <table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>edad</th>
+            <th>ID cine</th>
+            <th>número de sala</th>
+            <th>capacidad</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($clients as $client)
+        @forelse ($salas as $sala)
             <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->nombre }}</td>
-                <td>{{ $client->mail }}</td>
-                <td>{{ $client->edad }}</td>
+                <td>{{ $sala->id }}</td>
+                <td>{{ $sala->cine_id }}</td>
+                <td>{{ $sala->nsalas }}</td>
+                <td>{{ $sala->capacidad }}</td>
                 <td>
                    
-                    <a href="{{ route('show.clientes', $client->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.clientes', $client->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.clientes', $client->id) }}">
-                        Eliminar
-                    </button>
+                    <a href="{{ route('show.salas', $sala->id)}}" class="btn btn-sm btn-primary">Ver</a>
+                    <a href="{{ route('edit.salas', $sala->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{{ route('destroy.salas', $sala->id) }}" class="btn btn-sm btn-danger">Eliminar</a>
                 </td>
             </tr>
         @empty
@@ -38,7 +36,7 @@
 </table>
 
 <div class="d-flex justify-content-center my-4">
-    {{ $clients->links() }}
+    {{ $salas->links() }}
 </div>
 
 <!-- Modal de Confirmación -->
@@ -56,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form action="{{route('destroy.clientes',$client->id)}}", id="deleteForm" method="POST">
+                <form id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -66,14 +64,14 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+     document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             // Botón que activó el modal
             var button = event.relatedTarget;
-            // URL del cliente a eliminar
+            // URL pasada por data-url
             var url = button.getAttribute('data-url');
-            // Configurar la acción del formulario
+            // Configurar el atributo action del formulario
             var form = document.getElementById('deleteForm');
             form.action = url;
         });

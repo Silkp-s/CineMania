@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clientController;
+use App\Http\Controllers\CineController;
+use App\Http\Controllers\salaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +22,36 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+//rutas clientes
 Route::get('/clientes',[clientController::class,'index'])->name('index.clientes');
 Route::get('/clientesnuevo',[clientController::class,'create'])->name('create.clientes');
 Route::get('/clientesshow/{id}',[clientController::class,'show'])->name('show.clientes');
-Route::get('/clienteseditar',[clientController::class,'edit'])->name('edit.clientes');
+Route::get('/clienteseditar/{id}',[clientController::class,'edit'])->name('edit.clientes');
+Route::put('/clientes/{id}',[clientController::class,'update'])->name('update.clientes');
+Route::post('/clientesstore', [ClientController::class, 'store'])->name('store.clientes');
+Route::delete('/clientes/{id}', [ClientController::class, 'destroy'])->name('destroy.clientes');
+// rutas cine
+Route::get('/cines',[CineController::class,'index'])->name('index.cines');
+Route::get('/cinesnuevo',[CineController::class,'create'])->name('create.cines');
+Route::get('/cinesshow/{id}',[CineController::class,'show'])->name('show.cines');
+Route::get('/cineseditar/{id}',[CineController::class,'edit'])->name('edit.cines');
+Route::put('/cines/{id}',[CineController::class,'update'])->name('update.cines');
+Route::post('/cinesstore', [CineController::class, 'store'])->name('store.cines');
+Route::delete('/cines/{id}', [CineController::class, 'destroy'])->name('destroy.cines');
+
+// rutas salas
+Route::get('/salas',[salaController::class,'index'])->name('index.salas');
+Route::get('/salasnuevo',[salaController::class,'create'])->name('create.salas');
+Route::get('/salasshow/{id}',[salaController::class,'show'])->name('show.salas');
+Route::get('/salaseditar/{id}',[salaController::class,'edit'])->name('edit.salas');
+Route::put('/salas/{id}',[salaController::class,'update'])->name('update.salas');
+Route::post('/salasstore', [salaController::class, 'store'])->name('store.salas');
+Route::delete('/salas/{id}', [salaController::class, 'destroy'])->name('destroy.salas');
 
 
-//Route::resource('client', clientController::class);
-/*   
-    --para usar en href--
-    client.index
-    client.create
-    client.show
-    client.edit
-*/
+
+
+
+
 

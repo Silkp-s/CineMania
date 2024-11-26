@@ -25,8 +25,7 @@ class clientController extends Controller
      */
     public function create()
     {
-        return view('client.create'); // Retorna la vista de creación
-        
+        return view('client.create'); // Retorna la vista de creación 
     }
 
     /**
@@ -38,14 +37,19 @@ class clientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:clients,email',
-            'phone' => 'nullable|string|max:20',
+            'nombre' => 'required|string|max:255',
+            'mail' => 'required|email|unique:clients,mail|max:255',
+            'contraseña' => 'required|string|min:6',
+            'edad' => 'required|integer|min:1|max:120',
         ]);
-        Client::create($request->all());
-
+        Client::create([
+            'nombre' => $request->nombre,
+            'mail' => $request->mail,
+            'contraseña' => bcrypt($request->contraseña),
+            'edad' => $request->edad,
+        ]);
         // Redirige a la lista de clientes con un mensaje de éxito
-        return redirect()->route('client.index')->with('success', 'Cliente creado con éxito.');
+        return redirect()->route('index.clientes')->with('success', 'Cliente creado con éxito.');
     }
 
     /**
@@ -81,18 +85,17 @@ class clientController extends Controller
      */
     public function update(Request $request, $id)
     {
-         // Valida los datos del formulario
-         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:clients,email,' . $client->id,
-            'phone' => 'nullable|string|max:20',
-        ]);
 
+        $client= Client::findOrFail($id);
         // Actualiza el cliente en la base de datos
-        $client->update($request->all());
-
+        $client->update([
+            'nombre' => $request->nombre,
+            'mail' => $request->mail,
+            'contraseña' => $request->contraseña ? bcrypt($request->contraseña) : $client->contraseña,
+            'edad' => $request->edad,
+        ]);
         // Redirige a la lista de clientes con un mensaje de éxito
-        return redirect()->route('client.index')->with('success', 'Cliente actualizado con éxito.');
+        return redirect()->route('index.clientes')->with('success', 'Cliente actualizado con éxito.');
     }
 
     /**
@@ -103,9 +106,9 @@ class clientController extends Controller
      */
     public function destroy($id)
     {
+        $client = Client::findOrFail($id);
         $client->delete(); // Elimina el cliente
-
         // Redirige a la lista de clientes con un mensaje de éxito
-        return redirect()->route('client.index')->with('success', 'Cliente eliminado con éxito.');
+        return redirect()->route('index.clientes')->with('success', 'Cliente eliminado con éxito.');
     }
 }

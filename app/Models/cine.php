@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cine extends Model
+class Cine extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,7 @@ class cine extends Model
         return $this->hasMany(salas::class,'salas_id','id');
     }
 
-    public function cine(){
+    public function Cine(){
         return $this->hasOne(cartelera::class,'cine_id','id');
     }
 }
