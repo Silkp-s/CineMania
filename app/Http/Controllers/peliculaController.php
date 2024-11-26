@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pelicula;
 
 class peliculaController extends Controller
 {
@@ -13,7 +14,8 @@ class peliculaController extends Controller
      */
     public function index()
     {
-        //
+        $peliculas = Pelicula::paginate(5);
+        return view('pelicula.index',compact('peliculas')); 
     }
 
     /**
@@ -23,7 +25,7 @@ class peliculaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pelicula.create');
     }
 
     /**
@@ -34,7 +36,20 @@ class peliculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'pg'   => 'required',
+            'idioma'=>'required'
+        ]);
+        
+        Cine::create([
+            'nombre' => $request->nombre,
+            'sala_id' => $request->sala_id,
+            'pg' => $request->pg,
+            'idioma'=>$request->idioma
+        ]);
+        // Redirige a la lista de peliculas con un mensaje de éxito
+        return redirect()->route('index.peliculas')->with('success', 'Pelicula creado con éxito.');
     }
 
     /**
@@ -45,7 +60,8 @@ class peliculaController extends Controller
      */
     public function show($id)
     {
-        //
+        $peliculas = Pelicula::findOrFail($id);
+        return view('pelicula.show', compact('pelicula')); // Pasa el cliente a la vista
     }
 
     /**
@@ -56,7 +72,8 @@ class peliculaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $peliculas = Pelicula::findOrFail($id);
+        return view('pelicula.edit', compact('peliculas'));
     }
 
     /**
@@ -68,9 +85,17 @@ class peliculaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pelicula= Pelicula::findOrFail($id);
+        // Actualiza el cliente en la base de datos
+        $pelicula->update([
+            'nombre' => $request->nombre,
+            'sala_id' => $request->sala_id,
+            'pg' => $request->pg,
+            'idioma'=>$request->idioma
+        ]);
+        // Redirige a la lista de clientes con un mensaje de éxito
+        return redirect()->route('index.peliculas')->with('success', 'Cine actualizado con éxito.');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -79,6 +104,9 @@ class peliculaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pelicula = Pelicula::findOrFail($id);
+        $pelicula->delete(); // Elimina el cliente
+        // Redirige a la lista de clientes con un mensaje de éxito
+        return redirect()->route('index.peliculas')->with('success', 'Peliculas eliminado con éxito.');
     }
 }

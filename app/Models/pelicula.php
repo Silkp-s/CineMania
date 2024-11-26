@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pelicula extends Model
+class Pelicula extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'cine_id',
-        'sala_id',
-        'nsala',
-        'capacidad',
-        'cartelera_id'
+        'sala_id',     
+        'idioma',
+        'pg',
+        'nombre',
+
     ];
     public function salas(){
         return $this->hasMany(sala::Class,'sala_id','id');

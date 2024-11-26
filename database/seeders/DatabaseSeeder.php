@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(ClientSeeder::class); // Registrar el ClientSeeder
         $this->call(CineSeeder::class);
+        $this->call(PeliculasSeeder::class);
     }
 }

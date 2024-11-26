@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\CineController;
 use App\Http\Controllers\salaController;
+use App\Http\Controllers\peliculaController;
 
 
 /*
@@ -48,6 +49,15 @@ Route::get('/salaseditar/{id}',[salaController::class,'edit'])->name('edit.salas
 Route::put('/salas/{id}',[salaController::class,'update'])->name('update.salas');
 Route::post('/salasstore', [salaController::class, 'store'])->name('store.salas');
 Route::delete('/salas/{id}', [salaController::class, 'destroy'])->name('destroy.salas');
+
+// rutas peliculas
+Route::get('/peliculas',[peliculaController::class,'index'])->name('index.peliculas');
+Route::get('/peliculasnuevo',[peliculaController::class,'create'])->name('create.peliculas');
+Route::get('/peliculasshow/{id}',[peliculaController::class,'show'])->name('show.peliculas');
+Route::get('/peliculaseditar/{id}',[peliculaController::class,'edit'])->name('edit.peliculas');
+Route::put('/peliculas/{id}',[peliculaController::class,'update'])->name('update.peliculas');
+Route::post('/peliculasstore', [peliculaController::class, 'store'])->name('store.peliculas');
+Route::delete('/peliculas/{id}', [peliculaController::class, 'destroy'])->name('destroy.peliculas');
 
 
 
