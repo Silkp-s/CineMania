@@ -39,7 +39,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este cliente?
+                ¿Estás seguro de que deseas eliminar esta pelicula?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -56,7 +56,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="5" class="text-center">No hay clientes registrados.</td>
+                <td colspan="5" class="text-center">No hay Salas registradas.</td>
             </tr>
         @endforelse
     </tbody>

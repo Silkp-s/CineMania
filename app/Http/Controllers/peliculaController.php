@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelicula;
+use App\Models\Sala;
 
 class peliculaController extends Controller
 {
@@ -25,7 +26,8 @@ class peliculaController extends Controller
      */
     public function create()
     {
-        return view('pelicula.create');
+        $salas=Sala::all();
+        return view('pelicula.create',compact('salas'));
     }
 
     /**
@@ -42,7 +44,7 @@ class peliculaController extends Controller
             'idioma'=>'required'
         ]);
         
-        Cine::create([
+        pelicula::create([
             'nombre' => $request->nombre,
             'sala_id' => $request->sala_id,
             'pg' => $request->pg,
@@ -60,7 +62,8 @@ class peliculaController extends Controller
      */
     public function show($id)
     {
-        $peliculas = Pelicula::findOrFail($id);
+        $pelicula = Pelicula::findOrFail($id);
+        
         return view('pelicula.show', compact('pelicula')); // Pasa el cliente a la vista
     }
 
@@ -73,7 +76,8 @@ class peliculaController extends Controller
     public function edit($id)
     {
         $peliculas = Pelicula::findOrFail($id);
-        return view('pelicula.edit', compact('peliculas'));
+        $salas=Sala::all();
+        return view('pelicula.edit', compact('peliculas','salas'));
     }
 
     /**
