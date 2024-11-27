@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','clientes')
 @section('content')
 <h1>Lista de Salas</h1>
