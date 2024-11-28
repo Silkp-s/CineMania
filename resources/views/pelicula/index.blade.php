@@ -1,33 +1,34 @@
-@extends('layouts.app')
-@section('title','clientes')
+@extends('layouts.principal')
+@section('title','pelicula')
 @section('content')
-<h1>Lista de Salas</h1>
-<a href="{{ route('create.salas') }}" class="btn btn-custom mb-3">Agregar sala</a>
+<h1>Lista de peliculas</h1>
+<a href="{{ route('create.peliculas') }}" class="btn btn-custom mb-3">Agregar pelicula</a>
 <table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>ID</th>
-            <th>ID cine</th>
-            <th>número de sala</th>
-            <th>capacidad</th>
+            <th>Nombre</th>
+            <th>ID sala Emision</th>
+            <th>Clasificacion</th>
+            <th>idioma</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($salas as $sala)
+        @forelse ($peliculas as $pelicula)
             <tr>
-                <td>{{ $sala->id }}</td>
-                <td>{{ $sala->cine_id }}</td>
-                <td>{{ $sala->nsalas }}</td>
-                <td>{{ $sala->capacidad }}</td>
-                <td>
-                   
-                    <a href="{{ route('show.salas', $sala->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.salas', $sala->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.salas', $sala->id) }}">
+                <td>{{ $pelicula->id }}</td>
+                <td>{{ $pelicula->nombre }}</td>
+                <td>{{ $pelicula->sala_id }}</td>
+                <td>{{ $pelicula->pg }}</td>
+                <td>{{ $pelicula->idioma }}</td>
+                <td> 
+                <a href="{{ route('show.peliculas', $pelicula->id)}}" class="btn btn-sm btn-primary">Ver</a>
+                <a href="{{ route('edit.peliculas', $pelicula->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.peliculas', $pelicula->id) }}">
                         Eliminar
                     </button>
-
+                    
                     <!-- Modal de Confirmación -->
 <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -43,7 +44,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form action="{{ route('destroy.salas', $sala->id) }}", id="deleteForm" method="POST">
+                <form action="{{ route('destroy.peliculas', $pelicula->id) }}", id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -56,14 +57,14 @@
             </tr>
         @empty
             <tr>
-                <td colspan="5" class="text-center">No hay Salas registradas.</td>
+                <td colspan="5" class="text-center">No hay Peliculas registradas.</td>
             </tr>
         @endforelse
     </tbody>
 </table>
 
 <div class="d-flex justify-content-center my-4">
-    {{ $salas->links() }}
+    {{ $peliculas->links() }}
 </div>
 
 
@@ -83,5 +84,4 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
 @endsection

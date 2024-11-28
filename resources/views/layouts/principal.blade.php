@@ -19,7 +19,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link active" href="{{route('index.salas')}}">Gestión de Salas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Películas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('index.peliculas')}}">Películas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('index.clientes')}}">Usuarios</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('index.cines')}}">Cines</a></li>
