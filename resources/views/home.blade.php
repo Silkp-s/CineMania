@@ -165,7 +165,7 @@
         <div class="row g-4">
             <div class="col-md-3">
                 <div class="card movie-card">
-                    <img src="1.jpg" class="card-img-top" alt="Gladiador">
+                <img src="{{ asset('img/1.jpg') }}" alt="Gladiador">
                     <div class="card-body">
                         <h5 class="card-title">Gladiador</h5>
                         <button class="btn btn-red">Ver Horarios</button>
@@ -174,7 +174,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card movie-card">
-                    <img src="2.png" class="card-img-top" alt="Wicked">
+                <img src="{{ asset('img/2.png') }}" alt="Wicked">
                     <div class="card-body">
                         <h5 class="card-title">Wicked</h5>
                         <button class="btn btn-red">Ver Horarios</button>
@@ -183,7 +183,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card movie-card">
-                    <img src="3.png" class="card-img-top" alt="Traje Rojo">
+                <img src="{{ asset('img/3.png') }}" alt="Traje Rojo">
                     <div class="card-body">
                         <h5 class="card-title">Traje Rojo</h5>
                         <button class="btn btn-red">Ver Horarios</button>
@@ -192,7 +192,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card movie-card">
-                    <img src="4.png" class="card-img-top" alt="Venom">
+                <img src="{{ asset('img/4.png') }}" alt="Venom">
                     <div class="card-body">
                         <h5 class="card-title">Venom</h5>
                         <button class="btn btn-red">Ver Horarios</button>
