@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','clientesCrear')
 @section('content')
 <h1>Listeilor show</h1>

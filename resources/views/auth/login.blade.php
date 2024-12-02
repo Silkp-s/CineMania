@@ -1,73 +1,153 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<style>
+    /* Estilos generales */
+    body, html {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%; /* Asegura que body y html ocupen el 100% de la ventana */
+        display: flex;
+        flex-direction: column; /* Organiza el contenido en columna (header, contenido, footer) */
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+                    url('https://via.placeholder.com/1920x1080?text=Fondo+Cine'); /* Cambia esta URL */
+        background-size: cover;
+        background-position: center;
+        color: #ffffff;
+    }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    .content-wrapper {
+        flex: 1; /* Hace que este contenedor ocupe el espacio disponible */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 56px); /* Ajusta por la altura del navbar si existe */
+    }
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    .register-container {
+        width: 400px;
+        padding: 40px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    .register-container h1 {
+        font-size: 32px;
+        color: #e50914;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: #fff;
+        color: #000;
+    }
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #e50914;
+        outline: none;
+        background-color: #fff;
+        color: #000;
+        box-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
+    }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #e50914;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    button:hover {
+        background: #b00610;
+    }
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    .secondary {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #d3d3d3;
+    }
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+    .secondary a {
+        color: #e50914;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+    .secondary a:hover {
+        color: #b00610;
+    }
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    footer {
+        background-color: #000;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        position: sticky; /* Hace que el footer se mantenga visible */
+        bottom: 0; /* Lo ancla a la parte inferior del contenedor */
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="register-container">
+        <h1>{{ __('Inicia Sesion') }}</h1>
+        <p>Inicia sesión para disfrutar del mejor contenido cinematográfico</p>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">
+                    {{ __('Recuerdame') }}
+                </label>
             </div>
-        </div>
+
+            <button type="submit">
+                {{ __('Iniciar Sesion') }}
+            </button>
+
+            @if (Route::has('password.request'))
+                <div class="secondary">
+                    <a href="{{ route('password.request') }}">{{ __('Olvidaste Tu Contraseña?') }}</a>
+                </div>
+            @endif
+        </form>
     </div>
 </div>
+
+<footer>
+    <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
+</footer>
 @endsection
