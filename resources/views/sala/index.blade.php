@@ -24,16 +24,10 @@
                    
                     <a href="{{ route('show.salas', $sala->id)}}" class="btn btn-sm btn-primary">Ver</a>
                     <a href="{{ route('edit.salas', $sala->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="{{ route('destroy.salas', $sala->id) }}" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="5" class="text-center">No hay clientes registrados.</td>
-            </tr>
-        @endforelse
-    </tbody>
-</table>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.salas', $sala->id) }}">
+                        Eliminar
+                    </button>
+
 
 <div class="d-flex justify-content-center my-4">
     {{ $salas->links('pagination::bootstrap-4') }}
@@ -43,6 +37,8 @@
 
 
 <!-- Modal de Confirmación -->
+
+                    <!-- Modal de Confirmación -->
 <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-black bg-gradient">
@@ -53,11 +49,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este cliente?
+                ¿Estás seguro de que deseas eliminar esta pelicula?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form id="deleteForm" method="POST">
+                <form action="{{ route('destroy.salas', $sala->id) }}", id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -66,6 +62,21 @@
         </div>
     </div>
 </div>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="5" class="text-center">No hay Salas registradas.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center my-4">
+    {{ $salas->links() }}
+</div>
+
+
 <script>
      document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
