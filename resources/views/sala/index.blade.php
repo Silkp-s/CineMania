@@ -28,14 +28,6 @@
                         Eliminar
                     </button>
 
-
-<div class="d-flex justify-content-center my-4">
-    {{ $salas->links('pagination::bootstrap-4') }}
-</div>
-
-
-
-
 <!-- Modal de Confirmación -->
 
                     <!-- Modal de Confirmación -->
@@ -73,8 +65,8 @@
 </table>
 
 <div class="d-flex justify-content-center my-4">
-    {{ $salas->links() }}
-</div>
+    {{ $salas->links('pagination::bootstrap-4') }}
+    </div>
 
 
 <script>
