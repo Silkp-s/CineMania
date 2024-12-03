@@ -98,6 +98,42 @@
             padding: 2rem;
         }
 
+        /* Header dentro del contenido principal */
+        .content-header {
+            background-color: #1f1f1f;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-header h1 {
+            font-size: 1.5rem;
+            color: #e50914;
+        }
+
+        .content-header .clock {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .content-header .btn-help {
+            background-color: #e50914;
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .content-header .btn-help:hover {
+            background-color: #b2070f;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
@@ -109,8 +145,9 @@
                 margin-left: 0;
             }
         }
-                /* Footer */
-                footer {
+
+        /* Footer */
+        footer {
             background-color: #000;
             color: white;
             text-align: center;
@@ -118,6 +155,19 @@
             width: 100%;
         }
     </style>
+
+    <script>
+        // Reloj en tiempo real
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        window.onload = updateClock;
+    </script>
 </head>
 <body>
     <div class="d-flex">
@@ -149,10 +199,22 @@
                 @csrf
             </form>
         </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="content-header">
+                <h1>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}!</h1>
+                <div class="clock" id="clock"></div>
+            </div>
+            
+            <!-- Aquí va el contenido dinámico -->
+        </div>
     </div>
-            <!-- Footer -->
-            <footer>
-            <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
-        </footer>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
+    </footer>
 </body>
 </html>
