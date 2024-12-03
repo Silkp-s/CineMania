@@ -123,30 +123,6 @@
         .card-body button:hover {
             background-color: #a30017;
         }
-        footer {
-        background-color: #000;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        width: 100%;
-        position: sticky; /* Hace que el footer se mantenga visible */
-        bottom: 0; /* Lo ancla a la parte inferior del contenedor */
-    }
-        /* Ajustes para dispositivos móviles */
-        @media (max-width: 768px) {
-            .promo-banner {
-                padding: 30px 15px;
-            }
-            .promo-banner h3 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .card-body h5 {
-                font-size: 1.1rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -203,11 +179,6 @@
     </div>
 <br>
 <br>    
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 CineMania. Donde las películas cobran vida.</p>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
