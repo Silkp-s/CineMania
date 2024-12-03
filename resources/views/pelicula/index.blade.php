@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','pelicula')
 @section('content')
 <h1>Lista de peliculas</h1>
