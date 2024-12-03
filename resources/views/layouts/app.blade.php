@@ -123,10 +123,6 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ route('index.salas') }}">Gestión de Salas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index.peliculas') }}">Películas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index.clientes') }}">Usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index.cines') }}">Cines</a></li>
                     </ul>
                 </div>
             </div>
