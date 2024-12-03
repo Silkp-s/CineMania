@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','clientes')
+@section('title', 'clientes')
 @section('content')
 
 <h1>Lista de Clientes</h1>
@@ -22,7 +22,7 @@
                 <td>{{ $client->mail }}</td>
                 <td>{{ $client->edad }}</td>
                 <td>
-                    <a href="{{ route('show.clientes', $client->id)}}" class="btn btn-sm btn-primary">Ver</a>
+                    <a href="{{ route('show.clientes', $client->id) }}" class="btn btn-sm btn-primary">Ver</a>
                     <a href="{{ route('edit.clientes', $client->id) }}" class="btn btn-sm btn-warning">Editar</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.clientes', $client->id) }}">
                         Eliminar
@@ -38,7 +38,7 @@
 </table>
 
 <div class="d-flex justify-content-center my-4">
-    {{ $clients->links() }}
+    {{ $clients->links('pagination::bootstrap-4') }}
 </div>
 
 <!-- Modal de Confirmación -->
@@ -65,6 +65,7 @@
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
@@ -75,16 +76,12 @@
             form.action = url;
         });
     });
-    
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 CineMania. Donde las películas cobran vida.</p>
-    </footer>
+
 <style>
-  /* Estilos generales */
+/* Estilos generales */
 body {
     background-color: #1a1a1a;
     color: #fff;
@@ -97,19 +94,40 @@ h1 {
     color: #e50914;
 }
 
+/* Botón personalizado para agregar cliente */
+.btn-custom {
+    background-color: #e50914;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #b00710;
+    color: #fff;
+    transform: scale(1.05); /* Pequeño efecto de zoom */
+}
+
+.btn-custom:active {
+    background-color: #80050c;
+    transform: scale(1); /* Elimina el efecto de zoom al hacer clic */
+}
+
 /* Estilos de la tabla */
 .table-dark {
     border-radius: 8px;
     overflow: hidden;
 }
+
 .table th, .table td {
     text-align: center;
     vertical-align: middle;
 }
 
-
-
-
+/* Botones de acciones */
 .btn-warning {
     background-color: #ffb400;
     border: none;
@@ -132,7 +150,7 @@ h1 {
     background-color: #a71d2a;
 }
 
-
+/* Paginación */
 .page-item {
     margin: 0 0.25rem;
 }
@@ -155,6 +173,5 @@ h1 {
     border-color: #e50914;
     color: white;
 }
-
 </style>
 @endsection

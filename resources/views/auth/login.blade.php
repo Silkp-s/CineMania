@@ -94,16 +94,6 @@
     .secondary a:hover {
         color: #b00610;
     }
-
-    footer {
-        background-color: #000;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        width: 100%;
-        position: sticky; /* Hace que el footer se mantenga visible */
-        bottom: 0; /* Lo ancla a la parte inferior del contenedor */
-    }
 </style>
 
 <div class="content-wrapper">
@@ -147,7 +137,5 @@
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
-</footer>
+
 @endsection

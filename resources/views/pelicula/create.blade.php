@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','PeliculaCrear')
 @section('content')
 <div class="container">
