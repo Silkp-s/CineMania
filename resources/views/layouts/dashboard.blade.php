@@ -109,6 +109,14 @@
                 margin-left: 0;
             }
         }
+                /* Footer */
+                footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -133,9 +141,18 @@
             <a href="{{ route('index.cines') }}" class="{{ request()->routeIs('index.cines') ? 'active' : '' }}">
                 <i class="bi bi-building"></i> Cines
             </a>
+            <a href="{{ route('logout') }}" 
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right"></i> Salir
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </nav>
-
-
     </div>
+            <!-- Footer -->
+            <footer>
+            <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
+        </footer>
 </body>
 </html>
