@@ -18,7 +18,7 @@ class CreateSalasTable extends Migration
             $table->unsignedBigInteger('cine_id');
             $table->integer('nsalas');
             $table->integer('capacidad');
-            $table->unsignedBigInteger ('peliculas_id');
+            $table->unsignedBigInteger ('peliculas_id')->nullable();
             $table->timestamps();           
             $table->foreign('cine_id')->references('id')->on('cines');
             
