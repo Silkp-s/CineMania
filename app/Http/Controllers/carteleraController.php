@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pelicula;
+use App\Models\Cartelera;
+use App\Models\Sala;
+use App\Models\Cine;  
 
 class carteleraController extends Controller
 {
@@ -12,8 +16,10 @@ class carteleraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {     
+        $carteleras = Cartelera::with(['cine','peliculas'])->paginate(5);
+
+        return view('cartelera.index', compact('carteleras'));
     }
 
     /**
@@ -23,7 +29,9 @@ class carteleraController extends Controller
      */
     public function create()
     {
-        //
+        $peliculas = Pelicula::all();
+        $cines=Cine::all();
+        return view('cartelera.create', compact('peliculas','cines'));
     }
 
     /**
@@ -34,9 +42,16 @@ class carteleraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cine_id'   => 'required',
+        ]);
+        $cartelera = Cartelera::create([
+            'cine_id' => $request->cine_id,
+        ]);
+        $cartelera->peliculas()->sync($request->peliculas_id);
+        return redirect()->route('index.carteleras')->with('success', 'Cartelera creada con éxito.');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -45,7 +60,9 @@ class carteleraController extends Controller
      */
     public function show($id)
     {
-        //
+        $cartelera = Cartelera::with(['cine','peliculas'])->findOrFail($id);
+        
+        return view('cartelera.show', compact('cartelera'));
     }
 
     /**
@@ -56,7 +73,10 @@ class carteleraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cartelera=Cartelera::with(['cine','peliculas'])->findOrFail($id);
+        $peliculas = Pelicula::all(); // Obtener todas las películas disponibles
+
+        return view('cartelera.edit', compact('cartelera', 'peliculas'));
     }
 
     /**
@@ -68,7 +88,10 @@ class carteleraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    $cartelera = Cartelera::findOrFail($id);
+
+    $cartelera->peliculas()->sync($request->peliculas);
+    return redirect()->route('index.carteleras')->with('success', 'Cartelera actualizada correctamente.');
     }
 
     /**
@@ -79,6 +102,9 @@ class carteleraController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $cartelera = Cartelera::with('peliculas')->findOrFail($id);
+    $cartelera->peliculas()->detach();
+    $cartelera->delete();
+    return redirect()->route('index.carteleras')->with('success', 'Cartelera eliminada con éxito.');
     }
 }
