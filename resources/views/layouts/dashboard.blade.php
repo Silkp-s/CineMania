@@ -219,7 +219,7 @@
                 <div class="clock" id="clock"></div>
             </div>
             
-            <!-- Aquí va el contenido dinámico -->
+
         </div>
     </div>
 
