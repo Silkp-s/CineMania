@@ -24,12 +24,22 @@
 
     <style>
         /* Estilos generales */
+        html, body {
+            height: 100%; /* Garantiza que ocupen todo el alto de la ventana */
+            margin: 0; /* Elimina márgenes */
+            display: flex;
+            flex-direction: column; /* Hace que los hijos estén en una columna */
+        }
+
         body {
             font-family: 'Nunito', 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #121212; /* Fondo oscuro global */
             color: #ffffff; /* Texto blanco predeterminado */
+        }
+
+        .d-flex {
+            flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+            display: flex;
         }
 
         /* Navbar */
@@ -148,10 +158,11 @@
 
         /* Footer */
         footer {
-            background-color: #000;
-            color: white;
+            background-color: #000; /* Fondo negro */
+            color: white; /* Texto blanco */
             text-align: center;
             padding: 15px 0;
+            margin-top: auto; /* Empuja el footer hacia el final */
             width: 100%;
         }
     </style>
