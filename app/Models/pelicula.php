@@ -13,7 +13,6 @@ class Pelicula extends Model
         'idioma',
         'pg',
         'nombre',
-
     ];
     public function salas(){
         return $this->hasMany(Sala::Class,'sala_id','id');
