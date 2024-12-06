@@ -42,6 +42,7 @@ class peliculaController extends Controller
             'nombre' => 'required',
             'pg'   => 'required',
             'idioma'=>'required'
+          
         ]);
         
         pelicula::create([

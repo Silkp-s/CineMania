@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Pelicula;
+use App\Models\Sala;
 use Faker\Factory as Faker;
 
 class PeliculasSeeder extends Seeder
@@ -16,10 +17,11 @@ class PeliculasSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create(); 
-        // Generar 10 clientes aleatorios
+        $salas = Sala::all(); 
+        // Generar 10 peliculas aleatorios
         for ($i = 0; $i < 10; $i++) {
             Pelicula::create([
-                'nombre' => $faker->name,               
+                'nombre' => $faker->name,           
                 'pg' => $faker->numberBetween(7, 18),
                 'nombre'=>$faker->sentence(),
                 'idioma'=>$faker->languageCode()                   

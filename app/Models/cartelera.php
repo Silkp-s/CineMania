@@ -4,22 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pelicula;
+use App\Models\Cine;
 
-class cartelera extends Model
+class Cartelera extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'pelicula_id',
         'cine_id'
     ];
 
-    public function peliculas()
-    {
-        return $this->hasMany(peliculas::class, 'pelicula_id','id');
-    }
 
     public function cine(){
-        return $this->belongsTo(cine::class,'cine_id','id');
+        return $this->belongsTo(Cine::class,'cine_id','id');
+    }
+
+    public function peliculas()
+    {
+        return $this->belongsToMany(Pelicula::class,'cartelera_pelicula','cartelera_id','pelicula_id');
     }
 }
