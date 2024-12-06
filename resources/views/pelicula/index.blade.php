@@ -62,9 +62,8 @@
         @endforelse
     </tbody>
 </table>
-
 <div class="d-flex justify-content-center my-4">
-    {{ $peliculas->links() }}
+    {{ $peliculas->links('pagination::bootstrap-4') }}
 </div>
 
 
