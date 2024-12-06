@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title', 'Detalles del Cine')
 @section('content')
 <div class="container my-5 d-flex justify-content-center align-items-center">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title','cineCrear')
 @section('content')
 <div class="container">

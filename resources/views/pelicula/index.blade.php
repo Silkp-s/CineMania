@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title','pelicula')
 @section('content')
 <h1>Lista de peliculas</h1>
