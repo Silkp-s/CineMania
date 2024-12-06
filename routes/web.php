@@ -30,7 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 })->name('dashboard');
-
+        
 //rutas clientes
 Route::get('/clientes',[clientController::class,'index'])->name('index.clientes');
 Route::get('/clientesnuevo',[clientController::class,'create'])->name('create.clientes');

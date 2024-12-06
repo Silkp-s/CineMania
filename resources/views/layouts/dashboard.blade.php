@@ -117,6 +117,11 @@
         <a href="{{ route('index.cines') }}" class="{{ request()->routeIs('index.cines') ? 'active' : '' }}">
             <i class="bi bi-building"></i> Cines
         </a>
+
+        <a href="{{ route('index.carteleras') }}" class="{{ request()->routeIs('index.carteleras') ? 'active' : '' }}">
+            <i class="bi bi-film"></i> Carteleras
+        </a>
+
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="bi bi-box-arrow-right"></i> Salir
         </a>

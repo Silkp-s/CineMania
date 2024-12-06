@@ -153,6 +153,30 @@
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.carteleras', $cartelera->id) }}">
                         Eliminar
                     </button>
+                    
+                    <div class="modal fade " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-black bg-gradient">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar esta cartelera?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form action="{{ route('destroy.carteleras', $cartelera->id) }}", id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
                 </td>
             </tr>
         @empty
@@ -168,11 +192,8 @@
 </div>
 
 <td>
-    <a href="{{ route('show.carteleras', $cartelera->id) }}" class="btn btn-sm btn-primary">Ver</a>
-    <a href="{{ route('edit.carteleras', $cartelera->id) }}" class="btn btn-sm btn-warning">Editar</a>
-    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.carteleras', $cartelera->id) }}">
-        Eliminar
-    </button>
+
+
 </td>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
