@@ -121,9 +121,13 @@
                             </li>
                         @endguest
                     </ul>
+                    @auth
+                    @role('admin')
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
                     </ul>
+                    @endrole
+                    @endauth
                 </div>
             </div>
         </nav>
