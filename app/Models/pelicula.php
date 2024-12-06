@@ -15,10 +15,10 @@ class Pelicula extends Model
         'nombre',
     ];
     public function salas(){
-        return $this->hasMany(sala::Class,'sala_id','id');
+        return $this->hasMany(Sala::Class,'sala_id','id');
     }
     
     public function cartelera(){
-        return $this->belongsTo(cartelera::class,'cartelera_id','id');
+        return $this->belongsToMany(Cartelera::class,'cartelera_pelicula','cartelera_id','id');
     }
 }

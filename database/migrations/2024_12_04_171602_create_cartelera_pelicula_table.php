@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeliculasTable extends Migration
+class CreateCarteleraPeliculaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePeliculasTable extends Migration
      */
     public function up()
     {
-        Schema::create('peliculas', function (Blueprint $table) {
+        Schema::create('cartelera_pelicula', function (Blueprint $table) {
             $table->id();
-            $table->string('idioma');
-            $table->string('pg');
-            $table->string('nombre');
+            $table->foreignId('cartelera_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pelicula_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreatePeliculasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('peliculas');
+        Schema::dropIfExists('cartelera_pelicula');
     }
 }
