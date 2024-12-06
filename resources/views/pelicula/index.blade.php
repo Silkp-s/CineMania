@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title','pelicula')
 @section('content')
 <h1>Lista de peliculas</h1>
@@ -62,9 +62,8 @@
         @endforelse
     </tbody>
 </table>
-
 <div class="d-flex justify-content-center my-4">
-    {{ $peliculas->links() }}
+    {{ $peliculas->links('pagination::bootstrap-4') }}
 </div>
 
 

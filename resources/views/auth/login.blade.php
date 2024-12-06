@@ -117,22 +117,10 @@
                 </span>
             @enderror
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label class="form-check-label" for="remember">
-                    {{ __('Recuerdame') }}
-                </label>
-            </div>
 
             <button type="submit">
                 {{ __('Iniciar Sesion') }}
             </button>
-
-            @if (Route::has('password.request'))
-                <div class="secondary">
-                    <a href="{{ route('password.request') }}">{{ __('Olvidaste Tu Contraseña?') }}</a>
-                </div>
-            @endif
         </form>
     </div>
 </div>
