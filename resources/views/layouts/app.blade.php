@@ -20,7 +20,28 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-        /* Estilos personalizados para el navbar */
+        /* Estilos globales */
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor principal */
+        #app {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Navbar */
         .navbar {
             background: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
             border-bottom: 2px solid #e50914; /* Línea roja inferior */
@@ -43,23 +64,13 @@
             color: #e50914 !important; /* Rojo al pasar el cursor */
         }
 
-        .dropdown-menu {
-            background-color: rgba(0, 0, 0, 0.9);
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .dropdown-item {
-            color: #ffffff !important;
-        }
-
-        .dropdown-item:hover {
-            background-color: #444;
-            color: #e50914 !important;
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28white, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -111,12 +122,7 @@
                         @endguest
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ route('index.salas') }}">Gestión de Salas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Películas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index.clientes') }}">Usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index.cines') }}">Cines</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -125,6 +131,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -5,6 +5,8 @@ use App\Http\Controllers\clientController;
 use App\Http\Controllers\CineController;
 use App\Http\Controllers\salaController;
 use App\Http\Controllers\peliculaController;
+use App\Http\Controllers\carteleraController;
+use App\Http\Controllers\vistaPrincipalController;
 
 
 /*
@@ -24,6 +26,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', function () {
+    return view('layouts.dashboard');
+})->name('dashboard');
+
 //rutas clientes
 Route::get('/clientes',[clientController::class,'index'])->name('index.clientes');
 Route::get('/clientesnuevo',[clientController::class,'create'])->name('create.clientes');
@@ -58,6 +65,22 @@ Route::get('/peliculaseditar/{id}',[peliculaController::class,'edit'])->name('ed
 Route::put('/peliculas/{id}',[peliculaController::class,'update'])->name('update.peliculas');
 Route::post('/peliculasstore', [peliculaController::class, 'store'])->name('store.peliculas');
 Route::delete('/peliculas/{id}', [peliculaController::class, 'destroy'])->name('destroy.peliculas');
+
+//rutas Carteleras
+
+Route::get('/carteleras', [carteleraController::class, 'index'])->name('index.carteleras');
+Route::get('/cartelerasnuevo',[carteleraController::class,'create'])->name('create.carteleras');
+Route::get('/cartelerasshow/{id}',[carteleraController::class,'show'])->name('show.carteleras');
+Route::get('/carteleraseditar/{id}',[carteleraController::class,'edit'])->name('edit.carteleras');
+Route::put('/carteleras/{id}',[carteleraController::class,'update'])->name('update.carteleras');
+Route::post('/cartelerasstore', [carteleraController::class, 'store'])->name('store.carteleras');
+Route::delete('/carteleras/{id}', [carteleraController::class, 'destroy'])->name('destroy.carteleras');
+
+//rutas VISTA principal
+
+Route::get('/vista_principal', [vistaPrincipalController::class, 'index'])->name('index.vistaPrincipal');
+Route::get('/vistaPrincipalshow/{id}',[vistaPrincipalController::class,'show'])->name('show.vistaPrincipal');
+Route::post('/carteleras', [vistaPrincipalController::class, 'getCartelerasByCine'])->name('cartelerasdelCine');
 
 
 

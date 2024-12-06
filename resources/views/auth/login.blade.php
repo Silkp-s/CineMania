@@ -94,16 +94,6 @@
     .secondary a:hover {
         color: #b00610;
     }
-
-    footer {
-        background-color: #000;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        width: 100%;
-        position: sticky; /* Hace que el footer se mantenga visible */
-        bottom: 0; /* Lo ancla a la parte inferior del contenedor */
-    }
 </style>
 
 <div class="content-wrapper">
@@ -113,14 +103,14 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('Correo') }}">
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
 
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Contraseña') }}">
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -147,7 +137,5 @@
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2024 CineManía - Donde las películas cobran vida</p>
-</footer>
+
 @endsection

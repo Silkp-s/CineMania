@@ -15,10 +15,8 @@ class CreateCartelerasTable extends Migration
     {
         Schema::create('carteleras', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peliculas_id');
             $table->unsignedBigInteger('cine_id');          
             $table->timestamps();
-            $table->foreign('peliculas_id')->references('id')->on('peliculas');
             $table->foreign('cine_id')->references('id')->on('cines');
         });
     }

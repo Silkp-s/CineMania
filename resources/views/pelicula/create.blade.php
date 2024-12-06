@@ -1,8 +1,8 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','PeliculaCrear')
 @section('content')
 <div class="container">
-    <h1>Crear Nueva Sala</h1>
+    <h1>Crear Nueva pelicula</h1>
     <form action="{{ route('store.peliculas') }}" method="POST">
         @csrf
         <div class="form-group">
