@@ -30,7 +30,11 @@
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre', $peliculas->nombre) }}" required>
         </div>
-        <button type="submit" class="btn btn-primary my-2">Actualizar Cine</button>
+        <div class="form-check mb-3">
+                <input type="checkbox" name="remove_image" id="remove_image" class="form-check-input">
+                <label for="remove_image" class="form-check-label">Remove current image</label>
+            </div>
+        <button type="submit" class="btn btn-primary my-2">Actualizar Pelicula</button>
         <a href="{{ route('index.peliculas') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>

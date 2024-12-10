@@ -41,17 +41,22 @@ class peliculaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'pg'   => 'required',
-            'idioma'=>'required'
-          
+            'idioma'=>'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         
         pelicula::create([
             'nombre' => $request->nombre,
             'sala_id' => $request->sala_id,
             'pg' => $request->pg,
-            'idioma'=>$request->idioma
+            'idioma'=>$request->idioma,
+            'image'=>$request->image,
         ]);
+
+       
+
         // Redirige a la lista de peliculas con un mensaje de éxito
+        $news->save();
         return redirect()->route('index.peliculas')->with('success', 'Pelicula creado con éxito.');
     }
 

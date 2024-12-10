@@ -11,6 +11,7 @@
             <th>ID sala Emision</th>
             <th>Clasificacion</th>
             <th>idioma</th>
+            <th>imagen</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
                 <td>{{ $pelicula->sala_id }}</td>
                 <td>{{ $pelicula->pg }}</td>
                 <td>{{ $pelicula->idioma }}</td>
+                <td>{{ $pelicula->image}}</td>
                 <td> 
                 <a href="{{ route('show.peliculas', $pelicula->id)}}" class="btn btn-sm btn-primary">Ver</a>
                 <a href="{{ route('edit.peliculas', $pelicula->id) }}" class="btn btn-sm btn-warning">Editar</a>

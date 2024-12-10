@@ -18,6 +18,7 @@ class CreatePeliculasTable extends Migration
             $table->string('idioma');
             $table->string('pg');
             $table->string('nombre');
+            $table->longText('image')->nullable();
             $table->timestamps();
         });
     }
