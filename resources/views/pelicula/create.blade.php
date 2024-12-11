@@ -26,10 +26,6 @@
             <label for="nombre">Nombre Pelicula</label>
             <input type="string" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
         </div>
-        <div class="form-group">
-                <label for="image">Imagen </label>
-                <input type="file" name="image" id="image" class="form-control">
-            </div>
         <button type="submit" class="btn btn-primary my-2">Crear Pelicula</button>
         <a href="{{ route('index.peliculas') }}" class="btn btn-secondary">Cancelar</a>
     </form>

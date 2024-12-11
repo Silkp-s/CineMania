@@ -22,9 +22,9 @@
                 <td>{{ $sala->capacidad }}</td>
                 <td>
                    
-                    <a href="{{ route('show.salas', $sala->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.salas', $sala->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.salas', $sala->id) }}">
+                    <a href="{{ route('show.salas', $sala->id)}}" class="text-light btn btn-outline-secondary">Ver</a>
+                    <a href="{{ route('edit.salas', $sala->id) }}" class="text-light btn btn-outline-success">Editar</a>
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.salas', $sala->id) }}">
                         Eliminar
                     </button>
 

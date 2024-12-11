@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Api\RoomController;    
+use App\Http\Controllers\Api\CineController;    
+use App\Http\Controllers\Api\CarteleraController;  
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('cines', RoomController::class)->names('api.cines');
+Route::apiResource('cines', CineController::class)->names('api.cines');
+Route::apiResource('carteleras', CarteleraController::class)->names('api.carteleras');
 

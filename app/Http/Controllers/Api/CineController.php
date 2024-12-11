@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cines;
+use App\Models\cine;
 class CineController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class CineController extends Controller
      */
     public function index()
     {
-        return response()->json(Cines::all(), 200);
+        return response()->json(cine::all(), 200);
     }
 
     /**
@@ -30,7 +30,7 @@ class CineController extends Controller
             'pais' => 'required|string|max:255'    
         ]);
 
-        $cine= Cines::create($validatedData);
+        $cine= cine::create($validatedData);
 
         return response()->json($room, 201);
     }
@@ -41,7 +41,7 @@ class CineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cines $room)
+    public function show(cine $room)
     {
         return response()->json($room, 200);
     }
@@ -53,7 +53,7 @@ class CineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cines $cine)
+    public function update(Request $request, cine $cine)
     {
         $validatedData = $request->validate([
             'ciudad' => 'required|string|max:255',
@@ -70,7 +70,7 @@ class CineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cines $cine)
+    public function destroy(cine $cine)
     {
         $cine->delete();
 
