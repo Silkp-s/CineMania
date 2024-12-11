@@ -30,9 +30,8 @@
             </div>
         </div>
 
-        <button type="button" id="add-pelicula" class="btn btn-info mb-3">Agregar Película</button>
-
-        <button type="submit" class="btn btn-success">Guardar Cartelera</button>
+        <button type="submit" class="btn btn-primary my-2">Crear cartelera</button>
+        <a href="{{ route('index.peliculas') }}" class="btn btn-danger ">Cancelar</a>
     </form>
 </div>
 

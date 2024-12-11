@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('cine', RoomController::class)->names('api.cine');
+Route::apiResource('cines', RoomController::class)->names('api.cines');
+

@@ -10,6 +10,7 @@
         <li><strong>Idioma:</strong> {{ $pelicula->idioma }}</li>
         <li><strong>Nombre Pelicula:</strong> {{ $pelicula->nombre }}</li>
         <li><strong>Clasificacion:</strong> {{ $pelicula->pg }}</li>
+        <li><strong>Imagen:</strong> {{ $pelicula->image }}</li>
     </ul>
     <a href="{{ route('index.peliculas') }}" class="btn btn-secondary">Volver a la lista</a>
 </div>

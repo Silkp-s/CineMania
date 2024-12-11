@@ -42,15 +42,26 @@ class peliculaController extends Controller
             'nombre' => 'required',
             'pg'   => 'required',
             'idioma'=>'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
+        $imageData = null; // Variable para almacenar la imagen en base64
+
+        if ($request->hasFile('image')) {
+        // Procesar la imagen cargada por el usuario
+            $image = $request->file('image');
+            $imageData = base64_encode(file_get_contents($image->getRealPath()));
+        } else {
+        // Usar una imagen por defecto en escala de grises
+        $defaultImagePath = public_path('images/default.png');
+        $imageData = base64_encode(file_get_contents($defaultImagePath));
+        }
+
         pelicula::create([
             'nombre' => $request->nombre,
             'sala_id' => $request->sala_id,
             'pg' => $request->pg,
             'idioma'=>$request->idioma,
-            'image'=>$request->image,
+            'image' => $imageData,
         ]);
 
        
@@ -101,8 +112,22 @@ class peliculaController extends Controller
             'nombre' => $request->nombre,
             'sala_id' => $request->sala_id,
             'pg' => $request->pg,
-            'idioma'=>$request->idioma
+            'idioma'=>$request->idioma,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        if ($request->has('remove_image') && $request->remove_image) {
+            // Remover la imagen actual y asignar la imagen por defecto
+            $defaultImagePath = public_path('images/default.png');
+            if (file_exists($defaultImagePath)) {
+                $news->image = base64_encode(file_get_contents($defaultImagePath));
+            } else {
+                $news->image = null; // Opción alternativa si no existe la imagen predeterminada
+            }
+        } elseif ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageData = base64_encode(file_get_contents($image->getRealPath()));
+            $news->image = $imageData;
+        }
         // Redirige a la lista de clientes con un mensaje de éxito
         return redirect()->route('index.peliculas')->with('success', 'Cine actualizado con éxito.');
     }
