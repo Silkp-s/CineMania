@@ -1,64 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Documentación de la API CineMania
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Descripción General
 
-## About Laravel
+*Nombre de la API*: API de Gestión de Clientes (CineMania)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+*Descripción*: Esta API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre la entidad "Cliente". Es útil para gestionar información de los clientes de la aplicación CineMania.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*URL Base*: http://127.0.0.1:8000/api
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Endpoints
 
-## Learning Laravel
+### 2.1. Listar Todos los Clientes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- *URL*: /clients
+- *Método*: GET
+- *Descripción*: Obtiene una lista de todos los clientes.
+- *Respuesta Exitosa (200)*:
+  json
+  {
+      "status": true,
+      "clientes": [
+          {
+              "id": 1,
+              "nombre": "Juan Pérez",
+              "mail": "juanperez@example.com",
+              "contraseña": "123456",
+              "edad": 30
+          },
+          {
+              "id": 2,
+              "nombre": "Maria Gómez",
+              "mail": "mariagomez@example.com",
+              "contraseña": "abcdef",
+              "edad": 25
+          }
+      ]
+  }
+  
+- *Códigos de Respuesta*:
+  - 200: OK
+  - 500: Error del Servidor
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2.2. Crear un Cliente
 
-## Laravel Sponsors
+- *URL*: /clients
+- *Método*: POST
+- *Descripción*: Crea un nuevo cliente.
+- *Cuerpo de la Solicitud*:
+  json
+  {
+      "nombre": "Pedro López",
+      "mail": "pedrolopez@example.com",
+      "contraseña": "nuevaContraseña",
+      "edad": 40
+  }
+  
+- *Respuesta Exitosa (200)*:
+  json
+  {
+      "status": true,
+      "Message": "Cliente Creado con exito!",
+      "Cliente": {
+          "id": 3,
+          "nombre": "Pedro López",
+          "mail": "pedrolopez@example.com",
+          "contraseña": "nuevaContraseña",
+          "edad": 40
+      }
+  }
+  
+- *Códigos de Respuesta*:
+  - 200: Creado con éxito
+  - 400: Solicitud Incorrecta
+  - 500: Error del Servidor
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 2.3. Actualizar un Cliente
 
-### Premium Partners
+- *URL*: /clients/{id}
+- *Método*: PUT
+- *Descripción*: Actualiza los detalles de un cliente existente.
+- *Parámetros*:
+  - {id}: ID del cliente a actualizar (entero).
+- *Cuerpo de la Solicitud*:
+  json
+  {
+      "nombre": "Pedro López Actualizado",
+      "mail": "pedrolopez@nuevoemail.com",
+      "contraseña": "123456789",
+      "edad": 41
+  }
+  
+- *Respuesta Exitosa (200)*:
+  json
+  {
+      "Message": "Actualizado con exito",
+      "Cliente": {
+          "id": 3,
+          "nombre": "Pedro López Actualizado",
+          "mail": "pedrolopez@nuevoemail.com",
+          "contraseña": "123456789",
+          "edad": 41
+      },
+      "status": 200
+  }
+  
+- *Códigos de Respuesta*:
+  - 200: OK
+  - 404: No se encontró el cliente
+  - 500: Error del Servidor
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### 2.4. Eliminar un Cliente
 
-## Contributing
+- *URL*: /clients/{id}
+- *Método*: DELETE
+- *Descripción*: Elimina un cliente específico.
+- *Parámetros*:
+  - {id}: ID del cliente a eliminar (entero).
+- *Respuesta Exitosa (200)*:
+  json
+  {
+      "Message": "Eliminado Con Exito!",
+      "Cliente": "Cliente eliminado",
+      "status": 200
+  }
+  
+- *Códigos de Respuesta*:
+  - 200: Eliminado con éxito
+  - 404: No se encontró el cliente
+  - 500: Error del Servidor
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 3. Ejemplos de Uso
 
-## Code of Conduct
+### 3.1. Ejemplo de Solicitud GET con curl
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+bash
+curl -X GET http://127.0.0.1:8000/api/clients
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3.2. Ejemplo de Solicitud POST con curl
 
-## License
+bash
+curl -X POST http://127.0.0.1:8000/api/clients \
+-H "Content-Type: application/json" \
+-d '{"nombre":"Pedro López","mail":"pedrolopez@example.com","contraseña":"nuevaContraseña","edad":40}'
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### 3.3. Ejemplo de Solicitud PUT con curl
+
+bash
+curl -X PUT http://127.0.0.1:8000/api/clients/3 \
+-H "Content-Type: application/json" \
+-d '{"nombre":"Pedro López Actualizado","mail":"pedrolopez@nuevoemail.com","contraseña":"123456789","edad":41}'
+
+
+### 3.4. Ejemplo de Solicitud DELETE con curl
+
+bash
+curl -X DELETE http://127.0.0.1:8000/api/clients/3
+
+
+## 4. Consideraciones Adicionales
+
+- *Autenticación*: Esta API no requiere autenticación.
+- *Errores Comunes*: Verifica que el ID proporcionado sea correcto y que el formato del cuerpo de la solicitud cumpla con los requisitos esperados.
+
+## 5. Contacto
+
+Para más información, contacte al desarrollador en [dtorresc\@it.ucsc.cl].
