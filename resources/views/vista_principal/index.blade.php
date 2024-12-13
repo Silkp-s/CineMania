@@ -147,7 +147,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
+ var reservacionCreateRoute = '{{ route("reservacion.create") }}';
     // Cuando se cambie el select del cine
     $('#cineSelect').change(function() {
         var cineId = $(this).val();
@@ -175,7 +175,7 @@
                                 <img src="{{ asset('img/4.png') }}" alt="${pelicula.nombre}">
                                 <div class="card-body">
                                     <h5 class="card-title">${pelicula.nombre}</h5>
-                                    <button class="btn btn-red">Ver Horarios</button>
+                                    <button class="btn btn-red" onclick="window.location='${reservacionCreateRoute}?pelicula_id=${pelicula.id}'">Reservar</button>
                                 </div>
                             </div>
                         </div>
