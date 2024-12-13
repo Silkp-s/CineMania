@@ -16,7 +16,7 @@ class Cine extends Model
 
     public function sala()
     {
-        return $this->hasMany(salas::class,'salas_id','id');
+        return $this->hasMany(Sala::class,'cine_id','id');
     }
 
     public function Cine(){
