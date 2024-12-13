@@ -7,6 +7,7 @@ use App\Http\Controllers\salaController;
 use App\Http\Controllers\peliculaController;
 use App\Http\Controllers\carteleraController;
 use App\Http\Controllers\vistaPrincipalController;
+use App\Http\Controllers\ReservacionesController;
 
 
 /*
@@ -81,6 +82,11 @@ Route::delete('/carteleras/{id}', [carteleraController::class, 'destroy'])->name
 Route::get('/vista_principal', [vistaPrincipalController::class, 'index'])->name('index.vistaPrincipal');
 Route::get('/vistaPrincipalshow/{id}',[vistaPrincipalController::class,'show'])->name('show.vistaPrincipal');
 Route::post('/carteleras', [vistaPrincipalController::class, 'getCartelerasByCine'])->name('cartelerasdelCine');
+
+//rutas vistas reservas
+Route::get('/reserva/create', [ReservacionesController::class, 'create'])->name('reservacion.create');
+Route::post('/reserva', [ReservacionesController::class, 'store'])->name('reservacion.store');
+Route::get('/reserva/success', [ReservacionesController::class, 'success'])->name('reservacion.success');
 
 
 

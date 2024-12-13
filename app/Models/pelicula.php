@@ -21,4 +21,8 @@ class Pelicula extends Model
     public function cartelera(){
         return $this->belongsToMany(Cartelera::class,'cartelera_pelicula','cartelera_id','id');
     }
+
+    public function reserva(){
+        return $this->hasMany(Reservaciones::class);
+    }
 }
