@@ -10,6 +10,8 @@ use App\Http\Controllers\vistaPrincipalController;
 use App\Http\Controllers\ReservacionesController;
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,7 +89,6 @@ Route::post('/carteleras', [vistaPrincipalController::class, 'getCartelerasByCin
 Route::get('/reserva/create', [ReservacionesController::class, 'create'])->name('reservacion.create');
 Route::post('/reserva', [ReservacionesController::class, 'store'])->name('reservacion.store');
 Route::get('/reserva/success', [ReservacionesController::class, 'success'])->name('reservacion.success');
-
 
 
 

@@ -11,6 +11,7 @@
             <th>ID sala Emision</th>
             <th>Clasificacion</th>
             <th>idioma</th>
+            <th>imagen</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -22,10 +23,11 @@
                 <td>{{ $pelicula->sala_id }}</td>
                 <td>{{ $pelicula->pg }}</td>
                 <td>{{ $pelicula->idioma }}</td>
+                <td>{{ $pelicula->image}}</td>
                 <td> 
-                <a href="{{ route('show.peliculas', $pelicula->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                <a href="{{ route('edit.peliculas', $pelicula->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.peliculas', $pelicula->id) }}">
+                <a href="{{ route('show.peliculas', $pelicula->id)}}" class="text-light btn btn-outline-secondary">Ver</a>
+                <a href="{{ route('edit.peliculas', $pelicula->id) }}" class="text-light btn btn-outline-success">Editar</a>
+                    <button type="button" class="btn btn-outline-danger text-light"  data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.peliculas', $pelicula->id) }}">
                         Eliminar
                     </button>
                     
