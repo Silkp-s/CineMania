@@ -45,7 +45,15 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+       // Buscar cliente por ID
+    $client = Client::find($id);
+
+    // Verificar si el cliente existe
+    if ($client) {
+        return response()->json($client, 200); // Retorna el cliente en formato JSON
+    } else {
+        return response()->json(['error' => 'Cliente no encontrado'], 404); // Retorna un error si no existe
+    }
     }
 
     /**
@@ -57,7 +65,7 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client=Client::find($request->id);
+        $client=Client::find($id);
         if($client){
             $client->nombre=$request->nombre;
             $client->mail=$request->mail;
@@ -72,7 +80,7 @@ class ClientsController extends Controller
         }else{
             return response([
                 'Message'=>'Error',
-                'Cliente'=>null,
+                'Cliente'=>$client,
                 'status'=>404
             ]);
         }
@@ -87,9 +95,13 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $request->validate(['id'=>'required']);
-        $cliente=Client::find($request->id);
+       
+        $cliente=Client::find($id);
         if($cliente){
+            $cliente->reserva()->each(function($reserva){
+                $reserva->delete();
+            });
+            
             $cliente->delete();
             return response([
                 'Message'=>'Eliminado Con Exito!',
