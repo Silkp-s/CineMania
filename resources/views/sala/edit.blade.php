@@ -26,7 +26,7 @@
             <label for="capacidad">Capacidad</label>
             <input type="text" name="capacidad" id="capacidad" class="form-control" value="{{ old('capacidad', $sala->capacidad) }}" required>
         </div>
-        <button type="submit" class="btn btn-primary my-2">Actualizar Cine</button>
+        <button type="submit" class="btn btn-primary my-2">Actualizar Sala</button>
         <a href="{{ route('index.salas') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
