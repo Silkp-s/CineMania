@@ -35,7 +35,7 @@
               "contraseña": "abcdef",
               "edad": 25
           }
-          ...
+        
       ]
   }
   ```
