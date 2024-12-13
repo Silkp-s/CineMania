@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sala extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = ['cine_id','nsalas','capacidad'];
 
     function estar()

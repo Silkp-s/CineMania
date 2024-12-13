@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\cine;
+use App\Models\Cine;
+use App\Models\Salas;
+
 
 
 class cinesController extends Controller
@@ -16,7 +18,10 @@ class cinesController extends Controller
      */
     public function index()
     {
-        return response()->json(cine::all(), 200);
+        $clientes=Cine::all();
+        return  response()->json(
+            ['status'=>true,
+            'Cines'=>$clientes]);
     }
 
 
@@ -28,14 +33,12 @@ class cinesController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'ciudad' => 'required|string|max:255',
-            'pais' => 'required|string|max:255'    
-        ]);
-
-        $cine= cine::create($validatedData);
-
-        return response()->json($room, 201);
+        $cine=Cine::create($request->all());
+        return response()->json([
+            'status'=>true,
+            'Message'=>'Cine Creado con exito!',
+            'Cliente'=>$cine
+        ],200);
     }
 
 
@@ -45,9 +48,19 @@ class cinesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(cine $room)
+    public function show( $id)
     {
-        return response()->json($room, 200);
+              // Buscar cliente por su ID
+    $cine = Cine::find($id);
+
+    // Verificar si el cliente existe
+    if ($cine) {
+        // Retornar el cliente como JSON con código HTTP 200
+        return response()->json($cine, 200);
+    } else {
+        // Retornar un mensaje de error si no se encuentra el cliente con código HTTP 404
+        return response()->json(['error' => 'cine no encontrado'], 404);
+    }
     }
 
 
@@ -58,15 +71,25 @@ class cinesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cine $cine)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'ciudad' => 'required|string|max:255',
-            'pais' => 'required|string|max:255'    
-        ]);
-        $cine->update($validatedData);
-
-        return response()->json($cine, 200);
+        $cine=Cine::find($request->id);
+        if($cine){
+            $cine->ciudad=$request->ciudad;
+            $cine->pais=$request->pais;
+            $cine->save();
+            return response([
+                'Message'=>'Actualizado Con exito',
+                'Cliente'=>$cine,
+                'status'=>200
+            ]);
+        }else{
+            return response([
+                'Message'=>'Error',
+                'cine'=>null,
+                'status'=>404
+            ]);
+        }
     }
 
 
@@ -76,11 +99,29 @@ class cinesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cine $cine)
+    public function destroy($id)
     {
-        $cine->delete();
 
-        return response()->json(null, 204);
+        $cine=Cine::find($id);
+      
+        if($cine){
+            $cartelera=$cine->cine();
+            $cartelera->delete();
+            $sala=$cine->sala();
+            $sala->delete();
+            $cine->delete();
+            return response([
+                'Message'=>'Eliminado Con Exito!',
+                'Cliente'=>'cine eliminado',
+                'status'=>200
+            ]);
+        }else{
+            return response([
+                'Message'=>'No se pudo elimianar',
+                'Cliente'=>$cine,
+                'Status'=>404
+            ]);
+        }
     }
 
 }

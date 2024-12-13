@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Salas;
+
 
 class Cine extends Model
 {
@@ -16,7 +18,7 @@ class Cine extends Model
 
     public function sala()
     {
-        return $this->hasMany(salas::class,'salas_id','id');
+        return $this->hasMany(Sala::class,'cine_id','id');
     }
 
     public function Cine(){

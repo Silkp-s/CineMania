@@ -45,7 +45,8 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+ 
+    }
     }
 
     /**
@@ -87,8 +88,8 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $request->validate(['id'=>'required']);
-        $cliente=Client::find($request->id);
+       
+        $cliente=Client::find($id);
         if($cliente){
             $cliente->delete();
             return response([
