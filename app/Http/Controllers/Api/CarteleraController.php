@@ -44,7 +44,12 @@ class CarteleraController extends Controller
      */
     public function show($id)
     {
-        //
+        $cartelera = Cartelera::find($id);
+        if ($cartelera) {
+            return response()->json($cartelera,200);
+        }else {
+            return response()->json(['error' => 'cartelera no encontrada'], 404);
+        }
     }
 
     /**
@@ -56,7 +61,7 @@ class CarteleraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cartelera=cartelera::find($request->id);
+        $cartelera=Cartelera::find($request->id);
         if($cartelera){
             $cartelera->cine_id=$request->cine_id;
             $client->save();
@@ -82,21 +87,20 @@ class CarteleraController extends Controller
      */
     public function destroy($id)
     {
-        $cartelera->validate(['id'=>'required']);
-        $cliente=Client::find($request->id);
-        if($cartelera){
-            $cartelera->delete();
-            return response([
-                'Message'=>'Eliminado Con Exito!',
-                'cartelera'=>'eliminado',
-                'status'=>200
-            ]);
-        }else{
-            return response([
-                'Message'=>'No se pudo elimianar',
-                'cartelera'=>$cartelera,
-                'Status'=>404
-            ]);
-        }
+       $cartelera = Cartelera::find($id);
+
+       if ($cartelera) {
+        $cartelera->delete();
+        return response([
+            'Message'=>'Eliminado Con Exito!',
+            'Cliente'=>'cine eliminado',
+            'status'=>200
+        ]);
+       }else{
+        return response([
+            'Message' => 'No se pudo eliminar',
+            'Status' => 404
+        ]);
+       }
     }
 }
