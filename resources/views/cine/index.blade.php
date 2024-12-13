@@ -19,9 +19,9 @@
                 <td>{{ $cine->ciudad }}</td>
                 <td>{{ $cine->pais }}</td>             
                 <td>
-                    <a href="{{ route('show.cines', $cine->id)}}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.cines', $cine->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.cines', $cine->id) }}">
+                    <a href="{{ route('show.cines', $cine->id)}}" class="text-light btn btn-outline-secondary">Ver</a>
+                    <a href="{{ route('edit.cines', $cine->id) }}" class="text-light btn btn-outline-success">Editar</a>
+                    <button type="button" class="btn btn-outline-danger text-light" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.cines', $cine->id) }}">
                         Eliminar
                     </button>
                 </td>

@@ -148,9 +148,9 @@
                     </ul>
                 </td>                   
                 <td>
-                    <a href="{{ route('show.carteleras', $cartelera->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.carteleras', $cartelera->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.carteleras', $cartelera->id) }}">
+                    <a href="{{ route('show.carteleras', $cartelera->id) }}" class="text-light btn btn-outline-secondary">Ver</a>
+                    <a href="{{ route('edit.carteleras', $cartelera->id) }}" class="text-light btn btn-outline-success">Editar</a>
+                    <button type="button" class="btn btn-outline-danger text-light" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.carteleras', $cartelera->id) }}">
                         Eliminar
                     </button>
                     

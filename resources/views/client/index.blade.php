@@ -22,9 +22,9 @@
                 <td>{{ $client->mail }}</td>
                 <td>{{ $client->edad }}</td>
                 <td>
-                    <a href="{{ route('show.clientes', $client->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                    <a href="{{ route('edit.clientes', $client->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.clientes', $client->id) }}">
+                    <a href="{{ route('show.clientes', $client->id) }}" class="text-light btn btn-outline-secondary">Ver</a>
+                    <a href="{{ route('edit.clientes', $client->id) }}" class="text-light btn btn-outline-success">Editar</a>
+                    <button type="button" class="btn btn-outline-danger text-light"  data-toggle="modal" data-target="#deleteModal" data-url="{{ route('destroy.clientes', $client->id) }}">
                         Eliminar
                     </button>
                 </td>
@@ -173,5 +173,25 @@ h1 {
     border-color: #e50914;
     color: white;
 }
+.modal-content {
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-header, .modal-body, .modal-footer {
+        color: #fff;
+    }
+
+    .modal-header {
+        background-color: #333;
+    }
+
+    .modal-body {
+        background-color: #222;
+    }
+
+    .modal-footer {
+        background-color: #333;
+    }
 </style>
 @endsection

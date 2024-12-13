@@ -26,7 +26,7 @@
             <label for="nombre">Nombre Pelicula</label>
             <input type="string" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
         </div>
-        <button type="submit" class="btn btn-primary my-2">Crear Sala</button>
+        <button type="submit" class="btn btn-primary my-2">Crear Pelicula</button>
         <a href="{{ route('index.peliculas') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
