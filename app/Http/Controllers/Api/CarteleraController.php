@@ -17,7 +17,8 @@ class CarteleraController extends Controller
         $cartelera=cartelera::all();
         return  response()->json(
             ['status'=>true,
-            'cartelera'=>$cartelera]);
+            'cartelera'=>$cartelera,
+        ]);
     }
 
     /**
@@ -32,7 +33,7 @@ class CarteleraController extends Controller
         return response()->json([
             'status'=>true,
             'Message'=>'Creado con exito!',
-            'cartelera'=>$cartelera
+            'cartelera'=>$cartelera,
         ],200);
     }
 
@@ -61,10 +62,10 @@ class CarteleraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cartelera=Cartelera::find($request->id);
+        $cartelera=Cartelera::find($id);
         if($cartelera){
             $cartelera->cine_id=$request->cine_id;
-            $client->save();
+            $cartelera->save();
             return response([
                 'Message'=>'Actualizado Con exito',
                 'cartelera'=>cartelera,
