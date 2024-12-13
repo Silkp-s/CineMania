@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\cine;
-class CineController extends Controller
+
+
+class cinesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +18,7 @@ class CineController extends Controller
     {
         return response()->json(cine::all(), 200);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,6 +38,7 @@ class CineController extends Controller
         return response()->json($room, 201);
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -45,6 +49,7 @@ class CineController extends Controller
     {
         return response()->json($room, 200);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -64,6 +69,7 @@ class CineController extends Controller
         return response()->json($cine, 200);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -76,4 +82,5 @@ class CineController extends Controller
 
         return response()->json(null, 204);
     }
+
 }

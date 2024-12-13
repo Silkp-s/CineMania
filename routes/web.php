@@ -9,6 +9,8 @@ use App\Http\Controllers\carteleraController;
 use App\Http\Controllers\vistaPrincipalController;
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +83,6 @@ Route::delete('/carteleras/{id}', [carteleraController::class, 'destroy'])->name
 Route::get('/vista_principal', [vistaPrincipalController::class, 'index'])->name('index.vistaPrincipal');
 Route::get('/vistaPrincipalshow/{id}',[vistaPrincipalController::class,'show'])->name('show.vistaPrincipal');
 Route::post('/carteleras', [vistaPrincipalController::class, 'getCartelerasByCine'])->name('cartelerasdelCine');
-
 
 
 
