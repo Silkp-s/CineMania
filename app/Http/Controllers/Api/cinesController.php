@@ -36,8 +36,8 @@ class cinesController extends Controller
         $cine=Cine::create($request->all());
         return response()->json([
             'status'=>true,
-            'Message'=>'Cine Creado con exito!',
-            'Cliente'=>$cine
+            'Message'=>'cine Creado con exito!',
+            'cine'=>$cine
         ],200);
     }
 
@@ -73,7 +73,7 @@ class cinesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cine=Cine::find($request->id);
+        $cine=Cine::find($id);
         if($cine){
             $cine->ciudad=$request->ciudad;
             $cine->pais=$request->pais;
